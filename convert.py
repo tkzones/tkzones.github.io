@@ -1,6 +1,46 @@
+def escape_markdown_characters(content):
+    """
+    转义Markdown中的特殊字符
+    
+    Args:
+        content (str): 原始文本内容
+        
+    Returns:
+        str: 转义后的文本内容
+    """
+    # Markdown特殊字符及其转义序列
+    escape_chars = {
+        '\\': r'\\',    # 反斜杠
+        '`': r'\`',     # 反引号
+        '*': r'\*',     # 星号
+        '_': r'\_',     # 下划线
+        '[': r'\[',     # 左方括号
+        ']': r'\]',     # 右方括号
+        '(': r'\(',     # 左圆括号
+        ')': r'\)',     # 右圆括号
+        '~': r'\~',     # 波浪线
+        '#': r'\#',     # 井号
+        '+': r'\+',     # 加号
+        '-': r'\-',     # 减号
+        '£': r'\£',     # 英镑符号
+        '.': r'\.',     # 点号
+        '!': r'\!',     # 感叹号
+    }
+    
+    # 注意：反斜杠必须首先处理，避免重复转义
+    result = content.replace('\\', r'\\')
+    
+    # 处理其他字符
+    for char, escaped in escape_chars.items():
+        if char != '\\':  # 反斜杠已经处理过了
+            result = result.replace(char, escaped)
+    
+    return result
+
+
 def convert_newlines_to_br(input_file, output_file):
     """
-    将txt文件中的换行符替换为<br>标签，将*替换为\*
+    将txt文件中的换行符替换为<br>标签，并转义Markdown特殊字符
     
     Args:
         input_file (str): 输入文件路径
@@ -11,9 +51,11 @@ def convert_newlines_to_br(input_file, output_file):
         with open(input_file, 'r', encoding='utf-8') as f:
             content = f.read()
         
-        # 将换行符替换为<br>，将*替换为\*
-        converted_content = content.replace('\n', '<br>')
-        converted_content = converted_content.replace('*', r'\*')
+        # 对Markdown特殊字符进行转义
+        converted_content = escape_markdown_characters(content)
+        
+        # 将换行符替换为<br>
+        converted_content = converted_content.replace('\n', '<br>')
         
         # 写入输出文件
         with open(output_file, 'w', encoding='utf-8') as f:
@@ -44,10 +86,10 @@ def main():
     """
 
 
-# 高级版本：处理不同类型的换行符和转义*字符
+# 高级版本：处理不同类型的换行符和转义Markdown特殊字符
 def convert_newlines_to_br_advanced(input_file, output_file, preserve_double_newlines=False):
     """
-    高级版本：处理不同操作系统的换行符，并将*转义为\*
+    高级版本：处理不同操作系统的换行符，并转义Markdown特殊字符
     
     Args:
         input_file (str): 输入文件路径
@@ -58,8 +100,8 @@ def convert_newlines_to_br_advanced(input_file, output_file, preserve_double_new
         with open(input_file, 'r', encoding='utf-8') as f:
             content = f.read()
         
-        # 首先转义*字符
-        content = content.replace('*', r'\*')
+        # 首先转义Markdown特殊字符
+        content = escape_markdown_characters(content)
         
         # 处理不同操作系统的换行符
         # Windows: \r\n, Unix/Linux: \n, Mac: \r
