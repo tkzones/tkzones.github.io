@@ -13,11 +13,11 @@ info:
   # Site title
   title: TK Zones Blog
   # Site subtitle
-  subtitle: Redefine Your Hexo Journey.
+  subtitle: Collection of Tickle Articles
   # Author name
-  author: The Redefine Team
+  author: TK Zones Blog
   # Site URL
-  url: https://redefine.ohevan.com
+  url: https://tkzones.github.io
 # BASIC INFORMATION <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< end
 
 
@@ -134,7 +134,7 @@ home_banner:
     light: /images/wallhaven-wqery6-light.webp # light mode
     dark: /images/wallhaven-wqery6-dark.webp # dark mode
   # Home banner title
-  title: Theme Redefine
+  title: TK Zones Blog
   # Home banner subtitle
   subtitle:
     text: [] # subtitle text, array
@@ -208,9 +208,9 @@ navbar:
     Home: 
       path: / 
       icon: fa-regular fa-house # can be empty
-    # Archives: 
-    #   path: /archives 
-    #   icon: fa-regular fa-archive # can be empty
+    Archives: 
+      path: /archives 
+      icon: fa-regular fa-archive # can be empty
     # Status: 
     #   path: https://status.ohevan.com/
     #   icon: fa-regular fa-chart-bar
