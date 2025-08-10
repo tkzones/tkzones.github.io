@@ -1,6 +1,6 @@
 def convert_newlines_to_br(input_file, output_file):
     """
-    将txt文件中的换行符替换为<br>标签
+    将txt文件中的换行符替换为<br>标签，将*替换为\*
     
     Args:
         input_file (str): 输入文件路径
@@ -11,8 +11,9 @@ def convert_newlines_to_br(input_file, output_file):
         with open(input_file, 'r', encoding='utf-8') as f:
             content = f.read()
         
-        # 将换行符替换为<br>
+        # 将换行符替换为<br>，将*替换为\*
         converted_content = content.replace('\n', '<br>')
+        converted_content = converted_content.replace('*', r'\*')
         
         # 写入输出文件
         with open(output_file, 'w', encoding='utf-8') as f:
@@ -43,10 +44,10 @@ def main():
     """
 
 
-# 高级版本：处理不同类型的换行符
+# 高级版本：处理不同类型的换行符和转义*字符
 def convert_newlines_to_br_advanced(input_file, output_file, preserve_double_newlines=False):
     """
-    高级版本：处理不同操作系统的换行符
+    高级版本：处理不同操作系统的换行符，并将*转义为\*
     
     Args:
         input_file (str): 输入文件路径
@@ -56,6 +57,9 @@ def convert_newlines_to_br_advanced(input_file, output_file, preserve_double_new
     try:
         with open(input_file, 'r', encoding='utf-8') as f:
             content = f.read()
+        
+        # 首先转义*字符
+        content = content.replace('*', r'\*')
         
         # 处理不同操作系统的换行符
         # Windows: \r\n, Unix/Linux: \n, Mac: \r
