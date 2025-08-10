@@ -213,7 +213,7 @@ navbar:
       icon: fa-regular fa-archive # can be empty
     Categories: 
       path: /categories
-      icon: fa-solid fa-folder
+      icon: fa-regular fa-folder
     # Status: 
     #   path: https://status.ohevan.com/
     #   icon: fa-regular fa-chart-bar
